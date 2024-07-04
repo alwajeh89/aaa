@@ -15,9 +15,26 @@ x*=2;
         kkkk
     </title>
 </svelte:head>
-<div class=" ">
-    <div class="bg-white h-[40dvh] w-[40dvw] rounded-3xl">
-<h5 class="text-2xl text-purple-300">  Welcome {x}</h5>
-<hr>
+    <div class="   bg-[#6cb9b6] h-[30rem] w-[20rem] rounded-3xl grid grid-cols-4 gap-3">
+<button> % </button>
+<button>√</button>
+<button>CE</button>
+<button>C</button>
+<button>7</button>
+<button>8</button>
+<button>9</button>
+<button>-</button>
+<button>4</button>
+<button>5</button>
+<button>6</button>
+<button>/</button>
+<button>1</button>
+<button>2</button>
+<button>3</button>
+<button>X</button>
+<button>.</button>
+<button>0</button>
+<button>=</button>
+<button>+</button>
 </div>
-</div>
+

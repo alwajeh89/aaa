@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+button{
+   @apply bg-[#1bd1a4] rounded-full;
+}
