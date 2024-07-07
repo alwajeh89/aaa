@@ -23,11 +23,11 @@ function mathjs(aa:String):String{
     case '√(':
       return 'sqrt(';
     case 'sin':
-      return 'sin(';
+      return 'sin(deg';
     case 'cos':
-      return 'cos(';
+      return 'cos(deg';
     case 'tan':
-      return 'tan(';
+      return 'tan(deg';
     case '^':
       return '^';
       case 'x':
