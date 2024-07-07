@@ -100,11 +100,12 @@ let allbutton=document.getElementsByTagName('button');
 for (let i = 0;i<allbutton.length;i++){
   allbutton[i].addEventListener('click',() => {
     new Audio('/click.mp3').play();
-  });
-  setTimeout(() => {
+    setTimeout(() => {
   // @ts-ignore
   document.activeElement?.blur();
-}, 1);
+}, 250);
+  });
+ 
 }});
 </script>
 <svelte:head>
