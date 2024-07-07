@@ -10,9 +10,13 @@ function addequation( value:String){
 }
 function delet(){
     equation ='';
+    sentax ='';
+
 }
 function backspace(){
 equation=equation.substring(0,equation.length-1);
+sentax=sentax.substring(0,sentax.length-1);
+
 }
 function mathjs(aa:String):String{
     switch(aa) {
@@ -64,7 +68,8 @@ function solve(){
  answer = equation;
 }
 function ans(){
-    equation+=answer;
+  equation+=answer;
+    sentax+=answer;
 
 }
 </script>
