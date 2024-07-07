@@ -17,7 +17,6 @@ function delet(){
 
 }
 function onkeydown(e:KeyboardEvent){
-  new Audio('/click.mp3').play();
   let button =document.getElementById(e.key);
 button?.click();
 button?.focus();
@@ -26,6 +25,7 @@ setTimeout(() => {
   document.activeElement?.blur();
 }, 250);
 }
+
 function backspace(){
 equation=equation.substring(0,equation.length-1);
 sentax=sentax.substring(0,sentax.length-1);
@@ -95,7 +95,18 @@ function ans(){
     sentax+=answer;
 
 }
-
+onMount(() => {
+let allbutton=document.getElementsByTagName('button');
+for (let i = 0;i<allbutton.length;i++){
+  allbutton[i].addEventListener('click',() => {
+    new Audio('/click.mp3').play();
+setTimeout(() => {
+  // @ts-ignore
+  document.activeElement?.blur();
+}, 250);
+  });
+}
+});
 </script>
 <svelte:head>
     <title>
@@ -103,7 +114,7 @@ function ans(){
     </title>
 </svelte:head>
 <svelte:window on:keydown|preventDefault={onkeydown}/>
-    <div class=" bg-[#736e72] min-h-[39rem] min-w-[21rem] rounded-3xl grid grid-cols-4 gap-1 p-6 font-extrabold shadow-[#eeede5] shadow-2xl text-2xl max-w-[18.75rem]">
+    <div  class=" bg-[#736e72] min-h-[39rem] min-w-[21rem] rounded-3xl grid grid-cols-4 gap-1 p-6 font-extrabold shadow-[#eeede5] shadow-2xl text-2xl max-w-[18.75rem]" >
 
 <div id ="output"
  class="bg-[#eeede5] rounded-2xl col-span-4 min-h-12 mb-1 flex justify-normal items-center px-4  break-all " >
