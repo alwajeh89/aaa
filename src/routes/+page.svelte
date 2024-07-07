@@ -103,7 +103,7 @@ for (let i = 0;i<allbutton.length;i++){
 setTimeout(() => {
   // @ts-ignore
   document.activeElement?.blur();
-}, 250);
+}, 100);
   });
 }
 });
