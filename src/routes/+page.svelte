@@ -4,7 +4,7 @@ let equation:String="";
 let answer='';
 let sentax='';
 function addequation( value:String){
-   
+
     equation += value;
    sentax += mathjs(value);
 }
@@ -20,7 +20,7 @@ sentax=sentax.substring(0,sentax.length-1);
 }
 function mathjs(aa:String):String{
     switch(aa) {
-    case '√':
+    case '√(':
       return 'sqrt(';
     case 'sin':
       return 'sin(';
@@ -84,7 +84,7 @@ function ans(){
    {equation}
 </div>
 <button on:click={()=>addequation('/100')}> % </button>
-<button on:click={()=>addequation('√')} >√</button>
+<button on:click={()=>addequation('√(')} >√</button>
 <button on:click={delet}>CE</button>
 <button on:click={backspace} class="bg-[#6a4349]">C</button>
 <button type="button" on:click={()=>addequation('sin(')}>sin </button>
