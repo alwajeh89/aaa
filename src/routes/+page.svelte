@@ -1,10 +1,13 @@
 <script lang="ts">
         import { evaluate } from 'mathjs';
+        import {onMount} from "svelte";
 let equation:String="";
 let answer='';
 let sentax='';
-function addequation( value:String){
 
+
+function addequation( value:String){
+// @ts-ignore
     equation += value;
    sentax += mathjs(value);
 }
@@ -12,6 +15,16 @@ function delet(){
     equation ='';
     sentax ='';
 
+}
+function onkeydown(e:KeyboardEvent){
+  new Audio('/click.mp3').play();
+  let button =document.getElementById(e.key);
+button?.click();
+button?.focus();
+setTimeout(() => {
+  // @ts-ignore
+  document.activeElement?.blur();
+}, 250);
 }
 function backspace(){
 equation=equation.substring(0,equation.length-1);
@@ -23,11 +36,11 @@ function mathjs(aa:String):String{
     case '√(':
       return 'sqrt(';
     case 'sin':
-      return 'sin(deg';
+      return 'sin(';
     case 'cos':
-      return 'cos(deg';
+      return 'cos(';
     case 'tan':
-      return 'tan(deg';
+      return 'tan(';
     case '^':
       return '^';
       case 'x':
@@ -63,53 +76,65 @@ function Parentheses(sentax: string): string {
   }
 
 function solve(){
-    let solveEquation = Parentheses(sentax);
+  try{
+  let solveEquation = Parentheses(sentax);
       equation = evaluate(solveEquation).toString();
- answer = equation;
+      // @ts-ignore
+ answer = equation;}
+ catch (error){
+let output =document.getElementById('output');
+  output?.classList.toggle('bg-red-500');
+  setTimeout(() => {
+    output?.classList.toggle('bg-red-500');
+  },500 );
+ }
 }
+
 function ans(){
   equation+=answer;
     sentax+=answer;
 
 }
+
 </script>
 <svelte:head>
     <title>
         calculator
     </title>
 </svelte:head>
-    <div class="   bg-[#736e72] min-h-[39rem] min-w-[21rem] rounded-3xl grid grid-cols-4 gap-1 p-6 font-extrabold shadow-[#eeede5] shadow-2xl text-2xl max-w-[18.75rem]">
+<svelte:window on:keydown|preventDefault={onkeydown}/>
+    <div class=" bg-[#736e72] min-h-[39rem] min-w-[21rem] rounded-3xl grid grid-cols-4 gap-1 p-6 font-extrabold shadow-[#eeede5] shadow-2xl text-2xl max-w-[18.75rem]">
 
-<div class="bg-[#eeede5] rounded-2xl col-span-4 min-h-12 mb-1 flex justify-normal items-center px-4  break-all " >
+<div id ="output"
+ class="bg-[#eeede5] rounded-2xl col-span-4 min-h-12 mb-1 flex justify-normal items-center px-4  break-all " >
    {equation}
 </div>
-<button on:click={()=>addequation('/100')}> % </button>
-<button on:click={()=>addequation('√(')} >√</button>
-<button on:click={delet}>CE</button>
-<button on:click={backspace} class="bg-[#6a4349]">C</button>
-<button type="button" on:click={()=>addequation('sin(')}>sin </button>
-<button on:click={()=>addequation('cos(')} >cos</button>
-<button on:click={()=>addequation('tan(')}>tan</button>
-<button  on:click={()=>addequation('+')} class="bg-[#6a4349]">+</button>
-<button  on:click={()=>addequation('7')}>7</button>
-<button on:click={()=>addequation('8')}>8</button>
-<button on:click={()=>addequation('9')}>9</button>
-<button on:click={()=>addequation('-')} class="bg-[#6a4349]">-</button>
-<button on:click={()=>addequation('4')}>4</button>
-<button on:click={()=>addequation('5')}>5</button>
-<button on:click={()=>addequation('6')}>6</button>
-<button on:click={()=>addequation('÷')} class="bg-[#6a4349]">÷</button>
-<button on:click={()=>addequation('1')}>1</button>
-<button on:click={()=>addequation('2')}>2</button>
-<button on:click={()=>addequation('3')}>3</button>
-<button on:click={()=>addequation('x')} class="bg-[#6a4349]">X</button>
-<button  on:click={()=>addequation('.')}>.</button>
-<button on:click={()=>addequation('0')}>0</button>
-<button on:click={()=>addequation('^')} class="text-base" >^</button>
-<button on:click={ans} class="bg-[#6a4349]">Ans</button>
-<button  on:click={()=>addequation('(')} class="bg-[#6a4349]">(</button>
-<button  on:click={()=>addequation(')')} class="bg-[#6a4349] ">)</button>
-<button class="bg-[#a4a4a4] col-span-2  " on:click={solve}>=</button>
-
+<button id ="%" on:click={()=>addequation('/100')}> % </button>
+<button  on:click={()=>addequation('√(')} >√</button>
+<button id ="Backspace" on:click={backspace}>DEL</button>
+<button id ="Delete" on:click={delet} class="bg-[#6a4349]">AC</button>
+<button   on:click={()=>addequation('sin(')}>sin </button>
+<button  on:click={()=>addequation('cos(')} >cos</button>
+<button  on:click={()=>addequation('tan(')}>tan</button>
+<button id ="+"  on:click={()=>addequation('+')} class="bg-[#6a4349]">+</button>
+<button id ="7"  on:click={()=>addequation('7')}>7</button>
+<button id ="8" on:click={()=>addequation('8')}>8</button>
+<button id ="9" on:click={()=>addequation('9')}>9</button>
+<button id ="-" on:click={()=>addequation('-')} class="bg-[#6a4349]">-</button>
+<button id ="4" on:click={()=>addequation('4')}>4</button>
+<button id ="5" on:click={()=>addequation('5')}>5</button>
+<button id ="6" on:click={()=>addequation('6')}>6</button>
+<button id ="/" on:click={()=>addequation('÷')} class="bg-[#6a4349]">÷</button>
+<button id ="1" on:click={()=>addequation('1')}>1</button>
+<button id ="2" on:click={()=>addequation('2')}>2</button>
+<button id ="3" on:click={()=>addequation('3')}>3</button>
+<button id ="*" on:click={()=>addequation('x')} class="bg-[#6a4349]">X</button>
+<button id ="."  on:click={()=>addequation('.')}>.</button>
+<button id ="0"  on:click={()=>addequation('0')}>0</button>
+<button id ="^" on:click={()=>addequation('^')} class="text-base" >^</button>
+<button  on:click={ans} class="bg-[#6a4349]">Ans</button>
+<button id ="("  on:click={()=>addequation('(')} class="bg-[#6a4349]">(</button>
+<button id =")"  on:click={()=>addequation(')')} class="bg-[#6a4349] ">)</button>
+<button id ="=" class="bg-[#a4a4a4] col-span-2  " on:click={solve}>=</button>
 </div>
 
