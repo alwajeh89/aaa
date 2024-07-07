@@ -8,7 +8,7 @@
 
 button{
    
-   @apply bg-[#eeede5] rounded-full h-[4rem] min-w-[4rem] border border-[#823c3c] border-2 m-1 hover:scale-95 transition-all  focus:scale-90 focus:outline-0 ;
+   @apply bg-[#eeede5] rounded-full h-[4rem] min-w-[4rem] border border-[#823c3c] border-2 m-1 hover:scale-95 transition-all  focus:scale-90 focus:outline-0   hover:bg-[#757575] active:bg-[#b3f7bb];
    
    }
    body{
