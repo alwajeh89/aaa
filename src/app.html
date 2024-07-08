@@ -1,6 +1,20 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		<style>
+			.shake {
+			  animation: shake 0.5s;
+			  animation-iteration-count: 1;
+			}
+		  
+			@keyframes shake {
+				0% { transform: translateX(0) }
+ 25% { transform: translateX(5px) }
+ 50% { transform: translateX(-5px) }
+ 75% { transform: translateX(5px) }
+ 100% { transform: translateX(0) }
+			}
+		  </style>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />

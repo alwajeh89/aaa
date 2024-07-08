@@ -84,11 +84,16 @@ function solve(){
  catch (error){
 let output =document.getElementById('output');
   output?.classList.toggle('bg-red-500');
+  output?.classList.add('shake');
+  
   setTimeout(() => {
+
     output?.classList.toggle('bg-red-500');
+    output?.classList.remove('shake');
   },500 );
  }
 }
+
 
 function ans(){
   equation+=answer;
@@ -107,14 +112,16 @@ for (let i = 0;i<allbutton.length;i++){
   });
  
 }});
+
 </script>
+
 <svelte:head>
     <title>
         calculator
     </title>
 </svelte:head>
 <svelte:window on:keydown|preventDefault={onkeydown}/>
-    <div  class=" bg-[#736e72] min-h-[39rem] min-w-[21rem] rounded-3xl grid grid-cols-4 gap-1 p-6 font-extrabold shadow-[#eeede5] shadow-2xl text-2xl max-w-[18.75rem]" >
+    <div  class="  bg-[#736e72] min-h-[39rem] min-w-[21rem] rounded-3xl grid grid-cols-4 gap-1 p-6 font-extrabold shadow-[#eeede5] shadow-2xl text-2xl max-w-[18.75rem]" >
 
 <div id ="output"
  class="bg-[#eeede5] rounded-2xl col-span-4 min-h-12 mb-1 flex justify-normal items-center px-4  break-all " >
